@@ -24,11 +24,12 @@ class MenuComSubMenu : Menu
 
     public override int ObterEscolha()
     {
-        base.ExibirMenu();
-        var escolha = ObterEscolha();
+        //base.ExibirMenu();
+        var escolha = base.ObterEscolha();
         if (_submenus.ContainsKey(escolha))
         {
             _submenus[escolha].ExibirMenu();
         }
+        return escolha;
     }
 }

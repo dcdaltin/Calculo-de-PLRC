@@ -17,7 +17,7 @@ class Menu
             Console.WriteLine($"{opcao.Key}: {opcao.Value}");
         }
     }
-    public int ObterEscolha()
+    public virtual int ObterEscolha()
     {
         Console.WriteLine("Digite a opção desejada:");
         var escolha = Console.ReadLine();

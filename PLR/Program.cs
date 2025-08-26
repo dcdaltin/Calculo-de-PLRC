@@ -1,4 +1,6 @@
-﻿T ObterDadoConsole<T>(string mensagem)
+﻿using System.Threading.Channels;
+
+T ObterDadoConsole<T>(string mensagem)
 {
     while (true)
     {
@@ -84,11 +86,37 @@ double CalcularPLR(double salario, double lucroLiquido, int colaboradores, doubl
     return plrLiquido;
 }
 
-var salario = ObterDadoConsole<double>("Digite o salário do colaborador:");
-var lucroLiquido = ObterDadoConsole<double>("Digite o lucro líquido da empresa:");
-var colaboradores = ObterDadoConsole<int>("Digite o número de colaboradores:");
-var percentualIR = ObterDadoConsole<double>("Digite o percentual de IR:");
+// var salario = ObterDadoConsole<double>("Digite o salário do colaborador:");
+// var lucroLiquido = ObterDadoConsole<double>("Digite o lucro líquido da empresa:");
+// var colaboradores = ObterDadoConsole<int>("Digite o número de colaboradores:");
+// var percentualIR = ObterDadoConsole<double>("Digite o percentual de IR:");
 
-var relatorioPlr = CalcularPLR(salario, lucroLiquido, colaboradores, percentualIR);
+// var relatorioPlr = CalcularPLR(salario, lucroLiquido, colaboradores, percentualIR);
 
-Console.WriteLine(relatorioPlr);
+// Console.WriteLine(relatorioPlr);
+
+var num_chances = 3;
+
+foreach (var arg in new[] { 1, 2, 3, 45, 100, 90, 8, 7 , 99, 65 })
+{
+    if (arg % 2 == 0) num_chances--;
+}
+
+var chancesRestante = num_chances;
+
+//Console.WriteLine(chancesRestante);
+
+
+var menuPrincipal = new Menu();
+menuPrincipal.AdicionarOpcao(1, "Menu");
+menuPrincipal.AdicionarOpcao(2, "Deveria ser 2");
+
+
+
+var submenu = new MenuComSubMenu();
+submenu.AdicionarOpcao(1, "Submenu");
+submenu.AdicionarSubmenu(1, menuPrincipal);
+submenu.ExibirMenu();
+var opcao = submenu.ObterEscolha();
+
+Console.WriteLine(opcao);

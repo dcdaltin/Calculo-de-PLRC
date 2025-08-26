@@ -1,10 +1,13 @@
 class MenuComSubMenu : Menu
 {
     Dictionary<int, Menu> _submenus;
+    int _submenuSelecionado;
+    const int NENHUM_SUBMENU = -1;
 
     public MenuComSubMenu() : base()
     {
         _submenus = new Dictionary<int, Menu>();
+        _submenuSelecionado = NENHUM_SUBMENU;
     }
 
     public void AdicionarSubmenu(int chave, Menu submenu)
@@ -15,20 +18,21 @@ class MenuComSubMenu : Menu
     public override void ExibirMenu()
     {
         base.ExibirMenu();
-        var escolha = ObterEscolha();
+        var escolha = base.ObterEscolha();
         if (_submenus.ContainsKey(escolha))
         {
+            _submenuSelecionado = escolha;
             _submenus[escolha].ExibirMenu();
         }
     }
 
     public override int ObterEscolha()
     {
-        base.ExibirMenu();
-        var escolha = ObterEscolha();
-        if (_submenus.ContainsKey(escolha))
+        if (_submenuSelecionado == NENHUM_SUBMENU)
         {
-            _submenus[escolha].ExibirMenu();
+            ExibirMenu();
         }
+
+        return _submenus[_submenuSelecionado].ObterEscolha();
     }
 }

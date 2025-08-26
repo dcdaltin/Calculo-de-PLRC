@@ -116,7 +116,7 @@ menuPrincipal.AdicionarOpcao(2, "Deveria ser 2");
 var submenu = new MenuComSubMenu();
 submenu.AdicionarOpcao(1, "Submenu");
 submenu.AdicionarSubmenu(1, menuPrincipal);
-submenu.ExibirMenu();
+submenu.ExibirMenu(); //depois das mudanças isso é opcional para MenuComSubMenu. Porém o comportamento da classe base é mantido, ou seja, se chamarmos tanto a função ExibirMenu() quanto a ObterEscolha(), o menu será exibido da forma esperada.
 var opcao = submenu.ObterEscolha();
 
 Console.WriteLine(opcao);
